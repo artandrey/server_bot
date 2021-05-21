@@ -182,6 +182,7 @@ message_emitter.on('read-message', (data) => {
 });
 message_emitter.on('binance-result', data => {
     const msg = data.data.msg;
+    const result = msg.success;
     botWorker.replyToAll(`Пользователь с ключом |||${data.key}||| обработал оперцию на Binance\nОтвет API: ${result ? 'success' : 'failed'}\n${msg ? msg : ''}`);
 });
 
