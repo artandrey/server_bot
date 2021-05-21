@@ -18,7 +18,6 @@ MongoClient.connect(url, function(err, client) {
     // }).catch();
     // setUsed('123', '321').catch();
     // getKeyData('hello_world').then(console.log).catch();
-    checkKey("kjnfsa").then(console.log);
     
 });
 
@@ -99,14 +98,14 @@ const setUsed = function(key, id) {
 const getKeyData = function (key) {
     const collection = db.collection('passwords');
     const promise = new Promise((res, rej) => {
-        collection.findOne(({key}, (err, data) => {
+        findInDb('passwords', {key}, (err, data) => {
             if (!data) {
                 res({});
             }
             else {
                 res(data);
             }
-        })); 
+        }); 
 
     });
     return promise;
