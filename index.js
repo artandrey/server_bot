@@ -219,6 +219,7 @@ const sendMessage = function (userId, message, callback) {
     }
 }
 const sendToClient = function (userId, message, callback) {
+    console.log('Send to client');
     console.log(userId);
     let sent = false;
     websocketServer.clients.forEach(client => {
