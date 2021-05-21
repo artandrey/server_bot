@@ -18,6 +18,7 @@ MongoClient.connect(url, function(err, client) {
     // }).catch();
     // setUsed('123', '321').catch();
     // getKeyData('hello_world').then(console.log).catch();
+    checkKey("kjnfsa").then(console.log);
     
 });
 
