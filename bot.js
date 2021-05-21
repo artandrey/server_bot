@@ -8,8 +8,8 @@ const bot = new Telegraf(token);
 const loginedUsers = new Array();
 const chatsId = new Array();
 
-let botAutoreply = !!Number.parseInt(fs.readFileSync(__dirname + '\\bot-autoreply.txt').toString());
-let autoreplyText = fs.readFileSync(__dirname + '\\bot-autoreply-content.txt').toString();
+let botAutoreply = !!Number.parseInt(fs.readFileSync(__dirname + '/bot-autoreply.txt').toString());
+let autoreplyText = fs.readFileSync(__dirname + '/bot-autoreply-content.txt').toString();
 console.log(botAutoreply);
 
 
@@ -124,7 +124,7 @@ bot.command('autoreply', (ctx) => {
         const textToUser = args.join(' ');
         if(textToUser.length !== 0) {
             autoreplyText = textToUser;
-            fs.writeFile(__dirname + '\\bot-autoreply-content.txt', textToUser, (err) => {
+            fs.writeFile(__dirname + '/bot-autoreply-content.txt', textToUser, (err) => {
                 ctx.reply('Фраза установлена');
             });
         }
