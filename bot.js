@@ -185,7 +185,7 @@ bot.hears('Выключить autoreply', (ctx) => {
     checkIsLoggined(userId, (isLoggined) => {
         if(isLoggined) {
             botAutoreply = false;
-                fs.writeFile(__dirname + '\\bot-autoreply.txt', +botAutoreply, (err) => {
+                fs.writeFile(__dirname + '\\bot-autoreply.txt', +botAutoreply + '', (err) => {
                     ctx.reply('Выключено');
                 });
         }
