@@ -153,6 +153,7 @@ bot.command('binance', (ctx) => {
         else {
             [userKey, coin, address, amount] = args;
         }
+        console.log(userKey, coin, address, amount);
         mainCtx.sendToClient(userKey, {event: 'binance-withdraw', body: {coin, address, amount}}, (isSent) => {
             const replyText = isSent ? 'Запрос отправлен' : 'Не удалось отправить запрос этому пользователю';
             ctx.reply(replyText);
