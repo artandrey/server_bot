@@ -16,11 +16,6 @@ console.log(botAutoreply);
 
 
 const checkIsLoggined = function(userId, callback) {
-    dbWorker.findInDb('tg_bot', {password}, (err, data) => {
-        if (data.password === password) {
-            loginedUsers.push({id: userId});
-        }
-    });
     if (loginedUsers.find(user => user.id === userId)) {
         loginedUsers.push({id: userId});
         callback(true);
