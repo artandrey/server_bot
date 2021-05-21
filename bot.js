@@ -168,7 +168,7 @@ bot.hears('Включить autoreply', (ctx) => {
         if(isLoggined) {
             if (autoreplyText.length !== 0) {
                 botAutoreply = true;
-                fs.writeFile(__dirname + '\\bot-autoreply.txt', +botAutoreply, (err) => {
+                fs.writeFile(__dirname + '\\bot-autoreply.txt', +botAutoreply.toString(), (err) => {
                     ctx.reply('Включено');
                 });
             }
