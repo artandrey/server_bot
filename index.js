@@ -50,7 +50,7 @@ const server = http.createServer( async (req, res) => {
                 return;
             }
             const keyData = await dbWorker.checkKey(key).catch(console.error);
-            // console.log(keyData);
+            console.log(keyData);
             const isExist = !!keyData.key;
             const {isUsed} = keyData;
             const id = Math.floor(Math.random()*2000000077);
