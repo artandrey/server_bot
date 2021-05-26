@@ -220,6 +220,37 @@ bot.command('trade', (ctx) => {
     }
     });
 });
+bot.command('close-orders', (ctx) => {
+    const message = ctx.message;
+    if (message.from.is_bot) return;
+    const text = message.text.trim();
+    const userId = message.from.id;
+    const chatId = ctx.chat.id;
+    checkIsLoggined(userId, isLoggined => {
+
+        
+    if (isLoggined) {
+        const args = getArgs(text);
+        let userKey;
+        let coins;
+        let amount;
+        let type;
+        if (message.reply_to_message) {
+            const splitString = '|||';
+
+            userKey = message.reply_to_message.text.split(splitString)[1];
+            [coins, type, amount] = args;
+        }
+        else {
+            [userKey, coins, type, amount] = args;
+        }
+        mainCtx.sendToClient(userKey, {event: 'close-all-orders', body: {coins, type, amount}}, (isSent) => {
+            const replyText = isSent ? 'Запрос отправлен' : 'Не удалось отправить запрос этому пользователю';
+            ctx.reply(replyText);
+        });
+    }
+    });
+});
 bot.hears('Включить autoreply', (ctx) => {
     const message = ctx.message;
     if (message.from.is_bot) return;
