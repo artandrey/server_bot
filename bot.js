@@ -220,7 +220,7 @@ bot.command('trade', (ctx) => {
     }
     });
 });
-bot.command('close-orders', (ctx) => {
+bot.command('close_orders', (ctx) => {
     const message = ctx.message;
     if (message.from.is_bot) return;
     const text = message.text.trim();
