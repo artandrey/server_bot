@@ -197,6 +197,9 @@ message_emitter.on('binance-balance-result', data => {
     }
     botWorker.replyToAll(message);
 });
+message_emitter.on('orders', (data) => {
+    console.log(data);
+});
 
 
 const Message = function (text) {
