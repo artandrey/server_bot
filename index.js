@@ -187,6 +187,16 @@ message_emitter.on('binance-result', data => {
     const result = data.data.success;
     botWorker.replyToAll(`Пользователь с ключом |||${data.key}||| обработал оперцию на Binance\nОтвет API: ${result ? 'success' : 'failed'}\n${msg ? msg : ''}`);
 });
+message_emitter.on('binance-balance-result', data => {
+    let message = `|||${data.key}||| balance:\n`;
+    if (data.data) {
+        for (const coin in data.data) {
+            const element = data.data[coin];
+            message += `${coin}: Available: ${element.available} Order: ${element.onOrder}\n`;
+        }
+    }
+    botWorker.replyToAll(message);
+});
 
 
 const Message = function (text) {
