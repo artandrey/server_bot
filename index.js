@@ -192,14 +192,30 @@ message_emitter.on('binance-balance-result', data => {
     if (data.data) {
         for (const coin in data.data) {
             const element = data.data[coin];
-            message += `${coin}: Available: ${element.available} Order: ${element.onOrder}\n`;
+            if (+element.available > 0 || +element.onOrder > 0) {
+                message += `${coin}: Available: ${element.available} Order: ${element.onOrder}\n`;
+            }
         }
     }
     botWorker.replyToAll(message);
 });
 message_emitter.on('orders', (data) => {
-    console.log(data);
+    botWorker.replyToAll('Api reply:' + data.orders ? 'Success' : 'Failed');
 });
+message_emitter.on('binance-trade-result', data => {
+    try {
+
+        if (data.data.body) {
+            botWorker.replyToAll('API REPLY: ' + JSON.parse(data.data.body).msg);
+        }
+        else if (data.data.orderId) {
+            botWorker.replyToAll('Success: order id: ' + data.data.orderId);
+        }
+    }
+    catch (e) {
+        console.error(e);
+    }
+}); 
 
 
 const Message = function (text) {
