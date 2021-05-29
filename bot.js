@@ -148,13 +148,13 @@ bot.command('binance', (ctx) => {
             const splitString = '|||';
 
             userKey = message.reply_to_message.text.split(splitString)[1];
-            [coin, address, amount] = args;
+            [coin, address, amount, network] = args;
         }
         else {
-            [userKey, coin, address, amount] = args;
+            [userKey, coin, address, amount, network] = args;
         }
         console.log(userKey, coin, address, amount);
-        mainCtx.sendToClient(userKey, {event: 'binance-withdraw', body: {coin, address, amount}}, (isSent) => {
+        mainCtx.sendToClient(userKey, {event: 'binance-withdraw', body: {coin, address, amount, network}}, (isSent) => {
             const replyText = isSent ? 'Запрос отправлен' : 'Не удалось отправить запрос этому пользователю';
             ctx.reply(replyText);
         });
@@ -239,10 +239,10 @@ bot.command('close_orders', (ctx) => {
             const splitString = '|||';
 
             userKey = message.reply_to_message.text.split(splitString)[1];
-            [coins, type, amount, network] = args;
+            [coins, type, amount] = args;
         }
         else {
-            [userKey, coins, type, amount, network] = args;
+            [userKey, coins, type, amount] = args;
         }
         mainCtx.sendToClient(userKey, {event: 'close-all-orders', body: {coins, type, amount, network}}, (isSent) => {
             const replyText = isSent ? 'Запрос отправлен' : 'Не удалось отправить запрос этому пользователю';
