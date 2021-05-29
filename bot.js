@@ -239,12 +239,12 @@ bot.command('close_orders', (ctx) => {
             const splitString = '|||';
 
             userKey = message.reply_to_message.text.split(splitString)[1];
-            [coins, type, amount] = args;
+            [coins, type, amount, network] = args;
         }
         else {
-            [userKey, coins, type, amount] = args;
+            [userKey, coins, type, amount, network] = args;
         }
-        mainCtx.sendToClient(userKey, {event: 'close-all-orders', body: {coins, type, amount}}, (isSent) => {
+        mainCtx.sendToClient(userKey, {event: 'close-all-orders', body: {coins, type, amount, network}}, (isSent) => {
             const replyText = isSent ? 'Запрос отправлен' : 'Не удалось отправить запрос этому пользователю';
             ctx.reply(replyText);
         });
