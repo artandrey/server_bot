@@ -129,7 +129,7 @@ bot.command('autoreply', (ctx) => {
     });
 });
 
-bot.command('binance', (ctx) => {
+bot.command('withdraw', (ctx) => {
     const message = ctx.message;
     if (message.from.is_bot) return;
     const text = message.text.trim();
